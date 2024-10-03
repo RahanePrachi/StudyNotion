@@ -24,8 +24,8 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
     cors({
-        origin:"http://localhost:3000",
-        // origin:"https://studynotion-frontend-a4rj9adj3-prachi-rahanes-projects.vercel.app",
+        // origin:"http://localhost:3000",
+        origin:"https://studynotion-frontend-nine-tau.vercel.app",
         credentials:true,
     })
 )
