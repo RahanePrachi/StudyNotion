@@ -49,7 +49,7 @@ const Home = () => {
         </div>
 
         {/* video */}
-        <div className="mx-3 my-12  shadow-[10px_-5px_50px_-5px] shadow-blue-200">
+        <div className="mx-3 my-7  shadow-[10px_-5px_50px_-5px] shadow-blue-200">
           
           <video muted loop autoPlay  className="shadow-[20px_20px_rgba(255,255,255)]">
             <source src={Banner} type="video/mp4"></source>
@@ -58,9 +58,9 @@ const Home = () => {
 
         {/* code section 1 */}
 
-        <div>
+        <div >
           <CodeBlocks
-            position={"lg:flex-row"}
+            position={"flex flex-col lg:flex-row"}
             heading={
               <div className="text-4xl font-semibold">
                 Unloc Your
@@ -76,7 +76,7 @@ const Home = () => {
               linkto: "/signup",
               active: true,
             }}
-            ctabtn2={{ btnText: "learn more", linkto: "/login", active: false }}
+            ctabtn2={{ btnText: "learn more", linkto: "/signup", active: false }}
             codeblock={`<!DOCTYPE html>\n <html lang="en">\n<head>\n<title>This is myPage</title>\n</head>\n<body>\n<h1><a href="/">Header</a></h1>\n<nav> <a href="/one">One</a> <a href="/two">Two</a> <a href="/three">Three</a>\n</nav>\n</body>`}
             codeColor={"text-yellow-25"}
             backgroundGradient={<div className="codeblock1 absolute"></div>}
@@ -87,7 +87,7 @@ const Home = () => {
 
         <div>
           <CodeBlocks
-            position={"lg:flex-row-reverse"}
+            position={"flex flex-col lg:flex-row-reverse"}
             heading={
               <div className="w-[100%] text-4xl font-semibold lg:w-[50%]">
                 Start
@@ -98,11 +98,12 @@ const Home = () => {
               "Go ahead, give it a try. Our hands-on learning environment means you'll be writing real code from your very first lesson."
             }
             ctabtn1={{
-              btnText: "try it yourself",
+              btnText: "Continue Lesson",
               linkto: "/signup",
               active: true,
             }}
-            ctabtn2={{ btnText: "learn more", linkto: "/login", active: false }}
+            ctabtn2={{ btnText: "learn more", linkto: "/signup", active: false }}
+           
             codeblock={`import React from "react";\n import CTAButton from "./Button";\nimport TypeAnimation from "react-type";\nimport { FaArrowRight } from "react-icons/fa";\n\nconst Home = () => {\nreturn (\n<div>Home</div>\n)\n}\nexport default Home;`}
             codeColor={"text-white"}
             backgroundGradient={<div className="codeblock2 absolute"></div>}

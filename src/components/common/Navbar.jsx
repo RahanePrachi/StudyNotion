@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef,useState } from "react";
 import logo from "../../assets/Logo/Logo-Full-Light.png";
 import { Link, matchPath } from "react-router-dom";
 import { NavbarLinks } from "../../data/navbar-links";
@@ -9,6 +9,7 @@ import ProfileDropDown from "../core/Auth/ProfileDropDown";
 import { apiConnector } from "../../services/apiconnector";
 import { categories } from "../../services/apis";
 
+import useOnClickOutside from "../../hooks/useOnClickOutside";
 import { IoIosArrowDropdownCircle } from "react-icons/io";
 
 // const subLinks = [
@@ -30,6 +31,10 @@ const Navbar = () => {
 
   const [subLinks, setSubLinks] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [open, setOpen] = useState(false)
+  const ref = useRef(null)
+
+  
   
   const fetchSublinks = async () => {
     try {
@@ -49,6 +54,9 @@ const Navbar = () => {
   const matchRoute = (route) => {
     return matchPath({ path: route }, location.pathname);
   };
+  useOnClickOutside(ref, () => setOpen(false))
+
+  //if (!user) return null
 
   return (
     <div
@@ -145,9 +153,56 @@ const Navbar = () => {
           )}
           {token !== null && <ProfileDropDown />}
         </div>
-        <button className="mr-4 md:hidden">
+        {/* <button className="mr-4 md:hidden">
           <AiOutlineMenu fontSize={24} fill="#AFB2BF" />
-        </button>
+        </button> */}
+
+<button className="relative mr-4 md:hidden" onClick={() => setOpen(true)}>
+      <div className="flex items-center gap-x-1 ">
+        
+      <AiOutlineMenu fontSize={24} fill="#AFB2BF" />
+      </div>
+      {open && (
+        <div
+          onClick={(e) => e.stopPropagation()}
+          className="absolute top-[118%] right-0 z-[1000] divide-y-[1px] divide-richblack-700 overflow-hidden rounded-md border-[1px] border-richblack-700 bg-richblack-800"
+          ref={ref}
+        >
+          <Link to="/" onClick={() => setOpen(false)}>
+            <div className="flex w-full items-center gap-x-1 py-[10px] px-[12px] text-sm text-richblack-100 hover:bg-richblack-700 hover:text-richblack-25">
+             
+              Home
+            </div>
+          </Link>
+          <Link to="/about" onClick={() => setOpen(false)}>
+            <div className="flex w-full items-center gap-x-1 py-[10px] px-[12px] text-sm text-richblack-100 hover:bg-richblack-700 hover:text-richblack-25">
+             
+              About Us
+            </div>
+          </Link>
+          <Link to="/contact" onClick={() => setOpen(false)}>
+            <div className="flex w-full items-center gap-x-1 py-[10px] px-[12px] text-sm text-richblack-100 hover:bg-richblack-700 hover:text-richblack-25">
+             
+              Contact Us
+            </div>
+          </Link>
+          <Link to="/login" onClick={() => setOpen(false)}>
+            <div className="flex w-full items-center gap-x-1 py-[10px] px-[12px] text-sm text-richblack-100 hover:bg-richblack-700 hover:text-richblack-25">
+             
+             Login
+            </div>
+          </Link>
+
+          <Link to="/signup" onClick={() => setOpen(false)}>
+            <div className="flex w-full items-center gap-x-1 py-[10px] px-[12px] text-sm text-richblack-100 hover:bg-richblack-700 hover:text-richblack-25">
+             
+             Sign Up
+            </div>
+          </Link>
+          
+        </div>
+      )}
+    </button>
       </div>
     </div>
   );
